@@ -17,7 +17,13 @@ public class ProfessorDto {
     private String titulacao;
     private List<DisciplinaDtoAgregado> disciplinaDto;
 
-    public ProfessorDto of(Professor professor) {
+    public static List<ProfessorDto> ofList(List<Professor> professores) {
+        return professores.stream()
+                .map(professor -> ProfessorDto.of(professor))
+                .collect(Collectors.toList());
+    }
+
+    public static ProfessorDto of(Professor professor) {
         return ProfessorDto.builder()
                 .id(professor.getId())
                 .titulacao(professor.getTitulacao())
@@ -34,7 +40,7 @@ public class ProfessorDto {
     @Builder
     @AllArgsConstructor
     @Getter
-    private class DisciplinaDtoAgregado {
+    private static final class DisciplinaDtoAgregado {
         private int id;
         private String descricao;
     }

@@ -1,5 +1,6 @@
 package com.example.apiEscola.controller;
 
+import com.example.apiEscola.dto.ProfessorDto;
 import com.example.apiEscola.model.Professor;
 import com.example.apiEscola.repository.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class ProfessorController {
     private ProfessorRepository professorRepository;
 
     @GetMapping
-    public List<Professor> getAllProfessores() {
-        return professorRepository.findAll();
+    public List<ProfessorDto> getAllProfessores() {
+        return ProfessorDto.ofList(professorRepository.findAll());
     }
 
     @PostMapping
